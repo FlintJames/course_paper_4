@@ -1,30 +1,57 @@
+import requests
+import json
+
 from HeadHunterABC import HeadHunterABC
 
+
+url = 'https://api.hh.ru/vacancies'
 
 class Vacancy(HeadHunterABC):
 
     """Класс для работы с вакансиями"""
 
     name_vacancy: str
-    link_vacancy: str
+    city: str
     salary: float
-    requirements: str
-    def __init__(self, name_vacancy, link_vacancy, salary, requirements):
+    experience: str
+    def __init__(self, name_vacancy, city, salary, experience):
         self.name_vacancy = name_vacancy
-        self.link_vacancy = link_vacancy
+        self.city = city
         self.salary = salary
-        self.requirements = requirements
+        self.experience = experience
 
     def get_api(self):
         """Подключение к API"""
-        pass
+        params = {'text': f'NAME:{self.name_vacancy}',
+                  'city': f'{self.city}',
+                  'salary': f'{self.salary}',
+                  'experience': f'{self.experience}'}
+        response = requests.get(url, params = params)
+        return response.json()
 
-    def compare_salary(self):
+    def add_vacancy(self):
+        with open(vacancy, encoding='utf-8') as json_file:
+            date_list = json.load(json_file)
+        with open(vacancy, 'w', encoding='utf-8') as json_file:
+            json.dump(date_list, json_file)
+
+
+    def delete_date(self):
+        with open(vacancy, 'r+', encoding='utf-8') as json_file:
+            date_list = json.load(json_file)
+            try:
+                if vacancy in date_list:
+                    del vacancy
+            except ValueError:
+                print('Вакансия не найдена')
+
+    def compare_salary(self, all_vacancy):
         """Сравнение заработной платы у вакансий"""
 
-        if salary in salary == None:
-            return f'Зарплата не указана'
-        else:
-            return f'{}'
+        for vacancy in all_vacancy:
+            if vacancy['salary'] is None:
+                return f'Зарплата не указана'
+            else:
+                return f'{}'
 
 
