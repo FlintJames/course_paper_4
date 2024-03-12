@@ -30,20 +30,28 @@ class Vacancy(HeadHunterABC):
         return response.json()
 
     def add_vacancy(self):
-        with open(vacancy, encoding='utf-8') as json_file:
+        with open('vacancy.json', encoding='utf-8') as json_file:
             date_list = json.load(json_file)
-        with open(vacancy, 'w', encoding='utf-8') as json_file:
+        with open('vacancy.json', 'w', encoding='utf-8') as json_file:
             json.dump(date_list, json_file)
 
 
     def delete_date(self):
-        with open(vacancy, 'r+', encoding='utf-8') as json_file:
+        with open('vacancy.json', 'r+', encoding='utf-8') as json_file:
             date_list = json.load(json_file)
             try:
                 if vacancy in date_list:
                     del vacancy
             except ValueError:
                 print('Вакансия не найдена')
+
+
+    def filter_vacancies(self):
+        vacancies_list  = []
+        filter_words
+        for vacancy in
+            if vacancy == filter_words
+
 
     def compare_salary(self, all_vacancy):
         """Сравнение заработной платы у вакансий"""
