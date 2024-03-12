@@ -1,5 +1,8 @@
 from abc import ABC, abstractmethod
 
+import requests
+
+
 class API(ABC):
     """Абстрактный класс для работы с API сервиса с вакансиями"""
     @abstractmethod
