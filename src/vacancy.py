@@ -1,12 +1,12 @@
 import requests
 import json
 
-from HeadHunterABC import HeadHunterABC
+from HeadHunterAPI import HeadHunterABC
 
 
 url = 'https://api.hh.ru/vacancies'
 
-class Vacancy(HeadHunterABC):
+class Vacancy:
 
     """Класс для работы с вакансиями"""
 
