@@ -1,23 +1,29 @@
 
-def user_interaction():
+def filter_vacancies(vacancies_list, filter_words):
+    filtered_vacancies = []
+    for vacancy in vacancies_list:
+        description_lower = vacancy.description.lower()
+        if any(keyword.lower() in description_lower for keyword in filter_words):
+            filtered_vacancies.append(vacancy)
+    return filtered_vacancies
 
-    '''Функция для взаимодействия с пользователем'''
+def get_salary(vacancy):
+    pass
 
+def get_vacancies_by_salary(vacancies, salary_range):
+    if '-' in salary_range:
+        min_salary, max_salary = map(int, salary_range.split('-'))
+        return [vacancy for vacancy in vacancies if min_salary <= get_salary(vacancy) <= max_salary]
+    else:
+        return vacancies
 
-    platforms = ["HeadHunter"]
-    search_query = input("Введите поисковый запрос: ")
-    top_n = int(input("Введите количество вакансий для вывода в топ N: "))
-    filter_words = input("Введите ключевые слова для фильтрации вакансий: ").split()
-    salary_range = input("Введите диапазон зарплат: ") # Пример: 100000 - 150000
+def sort_vacancies(vacancies_list):
+    sorted_vacancies = sorted(vacancies_list, key=lambda x: x.salary, reverse=True)
+    return sorted_vacancies
 
-    filtered_vacancies = filter_vacancies(vacancies_list, filter_words)
+def get_top_vacancies(vacancies_list, top_n):
+    return vacancies_list[:top_n]
 
-    ranged_vacancies = get_vacancies_by_salary(filtered_vacancies, salary_range)
-
-    sorted_vacancies = sort_vacancies(ranged_vacancies)
-    top_vacancies = get_top_vacancies(sorted_vacancies, top_n)
-    print_vacancies(top_vacancies)
-
-
-if __name__ == "__main__":
-    user_interaction()
+def print_vacancies(vacancies_list):
+    for vacancy in vacancies_list:
+        print(vacancy)

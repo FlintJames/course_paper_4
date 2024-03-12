@@ -1,10 +1,6 @@
-import requests
-import json
-
-from abc import ABC, abstractmethod
-from HeadHunterAPI import HeadHunterABC
-
-
+from abc import ABC
+from src.HeadHunter import BaseAPI, HeadHunter
+from src.user import filter_vacancies, get_vacancies_by_salary, sort_vacancies, get_top_vacancies, print_vacancies
 class Vacancy:
     """Класс для работы с вакансиями"""
 
@@ -42,7 +38,10 @@ class Vacancy:
         return data
 
     def __str__(self):
-        pass
+        return f'{self.name_vacancy}, {self.city}, {self.salary_from}-{self.salary_to} руб., {self.url}'
+
+    def __lt__(self, other):
+        return self.salary < other.salary
 
     @classmethod
     def create_objects_from_data(cls, data: list[dict], instances):
@@ -60,9 +59,3 @@ class Vacancy:
                 init_data['salary_to'] = None
             instance = cls(**init_data)
             instances.append(instance)
-
-    # def filter_vacancies(self):
-    # vacancies_list  = []
-    # filter_words
-    # for vacancy in
-    # if vacancy == filter_words
