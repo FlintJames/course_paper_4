@@ -5,6 +5,7 @@ from src.vacancy import Vacancy
 from config import ROOT_DIR
 import json
 
+
 class AbstractInfo(ABC):
     """Абстрактный класс для работы с JSON-файлом"""
     @abstractmethod
