@@ -1,11 +1,26 @@
 import os.path
-
+from abc import ABC, abstractmethod
 from src import vacancy
 from src.vacancy import Vacancy
 from config import ROOT_DIR
 import json
+
+class AbstractInfo(ABC):
+    """Абстрактный класс для работы с JSON-файлом"""
+    @abstractmethod
+    def add_vacancy(self):
+        pass
+
+    @abstractmethod
+    def add_vacancies(self):
+        pass
+
+    @abstractmethod
+    def del_vacancy(self):
+        pass
 class InfoVacancy:
     """Класс для сохранения информации о вакансиях в JSON-файл"""
+
     def __init__(self, filename):
         self.FILE_PATH = os.path.join(ROOT_DIR, 'data', filename)
         self.__check_file_exists()

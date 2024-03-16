@@ -21,5 +21,8 @@ class HeadHunter(BaseAPI):
         self.params['text'] = keyword
         response = requests.get(self.url, params=self.params)
         data = response.json()
-        return data['items']
+        if response.status_code == 200:
+            return data['items']
+        else:
+            print("Произошла ошибка")
 
