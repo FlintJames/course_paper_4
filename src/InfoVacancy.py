@@ -19,7 +19,7 @@ class AbstractInfo(ABC):
     @abstractmethod
     def del_vacancy(self):
         pass
-class InfoVacancy:
+class InfoVacancy(AbstractInfo):
     """Класс для сохранения информации о вакансиях в JSON-файл"""
 
     def __init__(self, filename):
