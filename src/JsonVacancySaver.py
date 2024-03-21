@@ -6,7 +6,7 @@ from config import ROOT_DIR
 import json
 
 
-class AbstractInfo(ABC):
+class AbstractVacancySaver(ABC):
     """Абстрактный класс для работы с JSON-файлом"""
     @abstractmethod
     def add_vacancy(self):
@@ -19,7 +19,7 @@ class AbstractInfo(ABC):
     @abstractmethod
     def del_vacancy(self):
         pass
-class InfoVacancy(AbstractInfo):
+class JsonVacancySaver(AbstractVacancySaver):
     """Класс для сохранения информации о вакансиях в JSON-файл"""
 
     def __init__(self, filename):
